@@ -15,8 +15,9 @@ import { HeroService } from './hero.service';
     FormsModule, 
     RouterModule.forRoot([
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: DashboardComponent },
       { path: 'heroes', component: HeroesComponent },
-      { path: 'dashboard', component: DashboardComponent }
+      { path: 'detail/:id', component: HeroDetailComponent },
     ]) 
   ],
   declarations: [ AppComponent, DashboardComponent, HeroesComponent, HeroDetailComponent ],

@@ -31,4 +31,24 @@ export class HeroesComponent implements OnInit {
   gotoDetail() {
     this.router.navigate(['/detail', this.selectedHero.id]);
   }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+
+    this.heroService
+      .create(name)
+      // oplossing om verkregen hero in de array te pushen vind ik niet OK
+      // beter is om de heroes te reloaden
+      // .then(heroCreated => {
+      //   this.heroes.push(heroCreated);
+      //   this.selectedHero = null;
+      .then(() => {
+        //reloaden door te navigeren werkt niet, ngInit gaat niet af als route niet verandert
+        //this.router.navigate(['/heroes']);
+        this.getHeroes();
+      });
+  }
 }

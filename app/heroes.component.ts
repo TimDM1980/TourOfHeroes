@@ -51,4 +51,16 @@ export class HeroesComponent implements OnInit {
         this.getHeroes();
       });
   }
+
+  delete(hero: Hero): void {
+    this.heroService
+      .delete(hero.id)
+      .then(() => {
+        // hier hetzelfde. Waarom niet getHeroes opnieuw doen?
+        this.heroes = this.heroes.filter(h => h !== hero);
+        if (hero === this.selectedHero) {
+          this.selectedHero = null;
+        }
+      });
+  }
 }
